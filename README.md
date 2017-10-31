@@ -117,6 +117,8 @@ These are some images from the "twoturns" data set:
 
 With the added training data, the model managed to drive the car around the track without leaving the road.
 
+### Simulation
+
 A video of the simulation run is in the file video.mp4.
 
 A simulator screen capture video is also uploaded on YouTube:
