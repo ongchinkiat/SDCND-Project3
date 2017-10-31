@@ -71,6 +71,13 @@ The data is also split into Training and Validation sets. (model.py lines 167)
 
 The model used an adam optimizer, so the learning rate was not tuned manually. (model.py line 237)
 
+The model is trained using these hyperparamters:
+
+1. epochs = 5
+2. batch size = 32
+3. keep probabilities = 0.5
+4. optimizer = AdamOptimizer
+
 ### Appropriate training data
 
 I started with just the Udacity provided training data set to build up my model architecture.
@@ -89,8 +96,32 @@ Two more training data set were used:
 
 1. The set "turnafterbridge" consist of 958 images recording the car going through the sharp turn after the bridge. (model.py line 70-115)
 
+These are some images from the "turnafterbridge" data set:
+
+![Image 1](https://github.com/ongchinkiat/SDCND-Project3/raw/master/turnafterbridge-center-1.jpg "Image 1")
+
+![Image 2](https://github.com/ongchinkiat/SDCND-Project3/raw/master/turnafterbridge-center-2.jpg "Image 2")
+
+![Image 3](https://github.com/ongchinkiat/SDCND-Project3/raw/master/turnafterbridge-center-3.jpg "Image 3")
+
+
 2. The set "twoturns" consist of 2368 images recording the car going through the 2 turns after the sharp turn after the bridge. (model.py line 118-163)
+
+These are some images from the "twoturns" data set:
+
+![Image 1](https://github.com/ongchinkiat/SDCND-Project3/raw/master/twoturns-center-1.jpg "Image 1")
+
+![Image 2](https://github.com/ongchinkiat/SDCND-Project3/raw/master/twoturns-center-2.jpg "Image 2")
+
+![Image 3](https://github.com/ongchinkiat/SDCND-Project3/raw/master/twoturns-center-3.jpg "Image 3")
 
 With the added training data, the model managed to drive the car around the track without leaving the road.
 
 A video of the simulation run is in the file video.mp4.
+
+A simulator screen capture video is also uploaded on YouTube:
+
+Video URL: https://youtu.be/w9Tr5YNHzx4
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=w9Tr5YNHzx4" target="_blank"><img src="http://img.youtube.com/vi/w9Tr5YNHzx4/0.jpg"
+alt="CarND" width="240" height="180" border="1" /></a>
