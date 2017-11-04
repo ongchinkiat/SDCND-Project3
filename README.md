@@ -110,7 +110,7 @@ With a simple architecture of 2 fully connected layers, the model managed to kee
 
 More layers were added, and I finally settled down on the 5 convolution layer followed by 5 fully connected layers architecture described above.
 
-To improve performance, I added the left camera images, with the steering angle added a fix bias of +0.3 (model.py line 41-47). The right camera images were also added, with the steering angle added a fix bias of -0.3 (model.py line 49-55). For the middle camera, images with center angle < -0.15 or center angle > -0.15 were duplicated 2 more time, to add emphasis on these large steering samples. (model.py line 59-65)
+To improve performance, I added the left camera images, with the steering angle added a fix bias of +0.35 (model.py line 41-47). The right camera images were also added, with the steering angle added a fix bias of -0.35 (model.py line 49-55). For the middle camera, images with center angle < -0.15 or center angle > -0.15 were duplicated 2 more time, to add emphasis on these large steering samples. (model.py line 59-65)
 
 With these improvements, the model managed to drive the car pass the bridge, but fail to pass the sharp bend after the bridge.
 
@@ -139,13 +139,20 @@ These are some images from the "twoturns" data set:
 
 ![Image 3](https://github.com/ongchinkiat/SDCND-Project3/raw/master/twoturns-center-3.jpg "Image 3")
 
-With the added training data, the model managed to drive the car around the track without leaving the road.
+The car went onto the ledge on the 2nd turn after the bridge. This was fixed by increasing the bias for the left and right camera from 0.35 to 0.45.
+
+With the changes, the model managed to drive the car around the track without leaving the road.
+
+This is the training and validation accuracy and loss graph:
+
+![Loss Image](https://github.com/ongchinkiat/SDCND-Project3/raw/master/model-loss.jpg "Loss Image")
+
 
 ### Simulation
 
 A video of the simulation run is in the file video.mp4.
 
-A simulator screen capture video is also uploaded on YouTube:
+A simulator screen capture video is also uploaded on YouTube. This video is from a previous run using a older model. In this run, the car went onto the ledge on the 2nd turn after the bridge.
 
 Video URL: https://youtu.be/w9Tr5YNHzx4
 
