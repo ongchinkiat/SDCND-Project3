@@ -14,6 +14,7 @@ import sklearn
 import os
 import csv
 import cv2
+import matplotlib.pyplot as plt
 
 # Load Keras Modules
 from keras.models import Sequential
@@ -40,7 +41,7 @@ with open('data/driving_log.csv') as csvfile:
             
             # left camera
             leftname = 'data/IMG/'+line[1].split('/')[-1]
-            leftangle = center_angle + 0.3
+            leftangle = center_angle + 0.35
             leftline = []
             leftline.append(leftname)
             leftline.append(leftangle)
@@ -48,7 +49,7 @@ with open('data/driving_log.csv') as csvfile:
             
             # right camera
             rightname = 'data/IMG/'+line[2].split('/')[-1]
-            rightangle = center_angle - 0.3
+            rightangle = center_angle - 0.35
             rightline = []
             rightline.append(rightname)
             rightline.append(rightangle)
@@ -80,7 +81,7 @@ with open('turnafterbridge/driving_log.csv') as csvfile:
 
             # left camera
             leftname = 'turnafterbridge/IMG/'+line[1].split('/')[-1]
-            leftangle = center_angle + 0.3
+            leftangle = center_angle + 0.35
             leftline = []
             leftline.append(leftname)
             leftline.append(leftangle)
@@ -88,7 +89,7 @@ with open('turnafterbridge/driving_log.csv') as csvfile:
             
             # right camera
             rightname = 'turnafterbridge/IMG/'+line[2].split('/')[-1]
-            rightangle = center_angle - 0.3
+            rightangle = center_angle - 0.35
             rightline = []
             rightline.append(rightname)
             rightline.append(rightangle)
@@ -128,7 +129,7 @@ with open('twoturns/driving_log.csv') as csvfile:
 
             # left camera
             leftname = 'twoturns/IMG/'+line[1].split('/')[-1]
-            leftangle = center_angle + 0.3
+            leftangle = center_angle + 0.45
             leftline = []
             leftline.append(leftname)
             leftline.append(leftangle)
@@ -136,7 +137,7 @@ with open('twoturns/driving_log.csv') as csvfile:
             
             # right camera
             rightname = 'twoturns/IMG/'+line[2].split('/')[-1]
-            rightangle = center_angle - 0.3
+            rightangle = center_angle - 0.45
             rightline = []
             rightline.append(rightname)
             rightline.append(rightangle)
@@ -234,13 +235,36 @@ model.add(Dense(10))
 model.add(Dense(1))
 
 # use Adam optimizer
-model.compile(loss='mse', optimizer='adam')
-model.fit_generator(train_generator, steps_per_epoch= len(train_samples)/batch_size -1, 
+model.compile(loss='mse', optimizer='adam', metrics=['accuracy'])
+
+print(model.summary())
+
+history = model.fit_generator(train_generator, steps_per_epoch= len(train_samples)/batch_size -1, 
                     validation_data=validation_generator, 
                     validation_steps=len(validation_samples)/batch_size -1, 
                     epochs=5)
 
-modelfile = 'car-model-11.h5'
+modelfile = 'car-model-13.h5'
 model.save(modelfile)
 
 print("Model saved.",modelfile)
+
+
+# list all data in history
+print(history.history.keys())
+# summarize history for accuracy
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper left')
+plt.show()
+# summarize history for loss
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'validation'], loc='upper left')
+plt.show()

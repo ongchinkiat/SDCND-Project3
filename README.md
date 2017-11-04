@@ -67,6 +67,30 @@ Dropout layer was used between the first and second fully connected layer to red
 
 The data is also split into Training and Validation sets. (model.py lines 167)
 
+### Model Summary
+
+This is the summary of the model:
+
+| Layer (type)  | Output Shape  | Param #   |
+| ----- | ----- | ----- |
+| cropping2d_1 (Cropping2D) |   (None, 90, 320, 3)    |    0         |
+| lambda_1 (Lambda) (Normalize)  |        (None, 90, 320, 3) |       0        |
+| max_pooling2d_1 (MaxPooling2D) | (None, 45, 160, 3)  |      0         |
+| conv2d_1 (Conv2D)   |         (None, 21, 78, 24)  |      1824      |
+| conv2d_2 (Conv2D)  |          (None, 9, 37, 36)  |       21636     |
+| conv2d_3 (Conv2D)  |          (None, 5, 33, 48) |        43248     |
+| conv2d_4 (Conv2D)        |    (None, 3, 31, 64)  |       27712     |
+| conv2d_5 (Conv2D) |           (None, 1, 29, 64) |        36928    |
+| flatten_1 (Flatten)  |        (None, 1856) |             0    |     
+| dense_1 (Dense)  |            (None, 1000)         |     1857000   |
+| activation_1 (Activation) (RELU) |   (None, 1000)  |            0         |
+| dropout_1 (Dropout) |         (None, 1000)       |       0   |      
+| dense_2 (Dense)   |           (None, 200)  |             200200    |
+| activation_2 (Activation) (RELU) |  (None, 200)  |             0         |
+| dense_3 (Dense) |             (None, 50)              |  10050     |
+| dense_4 (Dense) |             (None, 10)  |              510       |
+| dense_5 (Dense)  |            (None, 1)              |   11     |
+
 ### Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually. (model.py line 237)
